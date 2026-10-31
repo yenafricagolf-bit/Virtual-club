@@ -2,7 +2,22 @@
 
 Bay ordering, Bar fulfilment and Reception tab management, refactored from the supplied HTML/CSS/JavaScript prototype. The original archive is preserved separately in the onboarding workspace. No existing Git commits were present at the start.
 
-## Run locally
+## Recommended free-pilot hosting
+
+Use **Cloudflare Pages + Pages Functions (Workers) + D1**. The existing interface is preserved, while the backend runs in Cloudflare rather than requiring a paid Python server. See [CLOUDFLARE_DEPLOYMENT.md](CLOUDFLARE_DEPLOYMENT.md) for account setup, deployment, QR sheets and current pilot limits.
+
+```sh
+npm ci
+npm run dev:init
+npm run build
+npm run dev
+```
+
+Cloudflare local development uses port 8788. Run `npm test` for the Workers/D1 regression suite. The screens automatically refresh every five seconds on this backend. Staff credentials are private in `.runtime/cloudflare-local-passwords.json`.
+
+The Cloudflare adapter has been validated locally; a real Cloudflare account and deployment credentials are required to publish it. No live website address or final QR destination has been invented.
+
+## Python alternative: run locally
 
 Requires Python 3.12+ with SQLite. Pinned Python dependencies provide printable QR/PDF generation; Node is only needed for optional browser tests.
 
@@ -28,7 +43,7 @@ Routes:
 | `/admin` | Administrator sign-in; use Menu Settings at Reception |
 | `/api/health` | Health check |
 
-Reception now includes **BAY QR CODES** to download a printable six-bay QR sheet after a public HTTPS origin is configured. See [DEPLOYMENT.md](DEPLOYMENT.md) for the Render hosting blueprint, staff password setup, custom domains and QR printing.
+Reception includes **BAY QR CODES** to download a printable six-bay QR sheet after a public HTTPS origin is configured. See [CLOUDFLARE_DEPLOYMENT.md](CLOUDFLARE_DEPLOYMENT.md) for free-pilot hosting, or [DEPLOYMENT.md](DEPLOYMENT.md) for the separate Render alternative.
 
 Root `/` asks customers to scan their bay QR. All six bays start available; Reception must open one before it can receive orders. Six bays preserve the existing prototype; bay count is initialized in `Club` for a new database.
 
@@ -81,7 +96,7 @@ node tests/browser.cjs
 
 The browser test starts its own server on port 8081 and uses unique temporary staff credentials and data. It checks three separate browser sessions, mobile overflow, grouped serving options, live status changes, settlement, receipt PDF, and bay reopening. It does not touch the development database. Override `VC_TEST_PORT` if that port is occupied.
 
-## Production configuration and remaining deployment work
+## Python/Render alternative: configuration and deployment
 
 This is a working single-server MVP and development environment. Public production deployment has not been performed or load-tested. Python's standard-library HTTP server is a development/pilot runner, not a hardened public application server. Before public launch, retain the API/business rules behind an appropriate production HTTP stack, configure TLS and access limits, and validate backups, monitoring, operational recovery, and the business's privacy/retention rules. Do not run multiple application processes against this aggregate database: their in-memory state would diverge. For multiple workers/locations, migrate the repository layer to normalized PostgreSQL tables with transaction locking and shared event distribution.
 

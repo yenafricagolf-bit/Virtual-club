@@ -53,14 +53,19 @@ function refresh() {
 async function loadState() {
   try {
     const previous = getBay()?.session;
-    state = await api('state' + (currentBay ? `?bay=${currentBay}` : ''));
+    const params = new URLSearchParams();
+    if (currentBay) params.set('bay',currentBay);
+    if (state.updates === 'poll' && state.version !== undefined) { params.set('since',state.version); params.set('role',state.role || ''); }
+    const incoming = await api('state' + (params.size ? `?${params}` : ''));
+    if (incoming.unchanged) { $('connection').textContent='AUTO · 5s · NAIROBI'; return; }
+    state = incoming;
     if (previous && previous !== getBay()?.session) {
       cart = {}; orderKey = crypto.randomUUID(); closeModal(); toast('This bay session has changed. Your cart was cleared.');
     }
     renderAll();
     if (dialogRefresh && $('modal').open) dialogRefresh();
     if (!can(activeView)) login(activeView);
-    $('connection').textContent = eventSource?.readyState === 1 ? 'LIVE · NAIROBI' : 'CONNECTED · NAIROBI';
+    $('connection').textContent = state.updates === 'poll' ? 'AUTO · 5s · NAIROBI' : eventSource?.readyState === 1 ? 'LIVE · NAIROBI' : 'CONNECTED · NAIROBI';
   } catch (error) { $('connection').textContent = 'OFFLINE · RETRYING'; toast(error.message); }
 }
 function renderAll() {
@@ -192,7 +197,7 @@ function reports() {
 }
 function admin() {
   if (state.role !== 'admin') return toast('Administrator sign-in required.');
-  modal(`<h2>The club menu.</h2><p class="hint">Changes are saved in the shared database. Existing orders retain their original prices.</p>${button('+ ADD PRODUCT','editProduct','','gold')}${state.products.map(p => `<div class="admin-product"><h3>${esc(p.name)}</h3><p class="hint">${esc(p.cat)} · ${p.active ? 'Active' : 'Deactivated'} · ${p.available ? 'Available' : 'Unavailable'}</p>${p.flag ? `<p class="error">${esc(p.flag)}</p>` : ''}<p>${p.options.map(o => `${esc(o.label)} ${money(o.price)}`).join(' · ') || 'No confirmed price'}</p>${button('EDIT PRODUCT','editProduct',p.id,'ghost')}</div>`).join('')}`);
+  modal(`<h2>The club menu.</h2><p class="hint">Changes are saved in the shared database. Existing orders retain their original prices.</p><div class="form-actions">${button('+ ADD PRODUCT','editProduct','','gold')}${state.updates==='poll' ? button('DOWNLOAD DATA BACKUP','exportBackup','','ghost') : ''}</div>${state.products.map(p => `<div class="admin-product"><h3>${esc(p.name)}</h3><p class="hint">${esc(p.cat)} · ${p.active ? 'Active' : 'Deactivated'} · ${p.available ? 'Available' : 'Unavailable'}</p>${p.flag ? `<p class="error">${esc(p.flag)}</p>` : ''}<p>${p.options.map(o => `${esc(o.label)} ${money(o.price)}`).join(' · ') || 'No confirmed price'}</p>${button('EDIT PRODUCT','editProduct',p.id,'ghost')}</div>`).join('')}`);
 }
 function editProduct(id) {
   const p = state.products.find(p => p.id === id) || {id:'',name:'',cat:'',options:[],active:true,available:false,flag:''};
@@ -227,6 +232,18 @@ async function act(action, id) {
     case 'split': { const count=$('paymentLines').children.length; if(count<10) $('paymentLines').insertAdjacentHTML('beforeend',paymentLine(count)); break; }
     case 'receipt': receipt(id); break;
     case 'print': window.print(); break;
+    case 'exportBackup': {
+      const backup=await api('export');
+      const link=document.createElement('a'), url=URL.createObjectURL(new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}));
+      link.href=url;link.download='YENGolf-club-backup.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
+      break;
+    }
+    case 'downloadQR': {
+      const info=await api('qr-info');
+      const {downloadQrSheet}=await import('/qr-print.js');
+      await downloadQrSheet(info);
+      break;
+    }
     case 'editProduct': editProduct(id); break;
     case 'availability': { const p=state.products.find(p=>p.id===id); await api('product',{id,available:!p.available}); await refresh(); toast('Availability updated.'); break; }
   }
@@ -294,7 +311,7 @@ $('adminButton').onclick=admin;
 $('qrButton').onclick=async()=>{
   try {
     const info=await api('qr-info');
-    modal(`<h2>Bay QR codes.</h2><p>Print one code for each bay. Reception must open the bay before customers can order.</p><p class="hint">Website: ${esc(info.origin)}</p>${Object.entries(info.bays).map(([bay,url])=>`<div class="report-row"><strong>Bay ${esc(bay)}</strong><span>${esc(url)}</span></div>`).join('')}<div class="form-actions"><a class="btn" href="/api/qr-codes.pdf">DOWNLOAD PRINTABLE QR SHEET</a></div><p class="hint">Print at 100% scale, cut along the borders and place each code at its matching bay. If the website address changes, replace the printed codes.</p>`);
+    modal(`<h2>Bay QR codes.</h2><p>Print one code for each bay. Reception must open the bay before customers can order.</p><p class="hint">Website: ${esc(info.origin)}</p>${Object.entries(info.bays).map(([bay,url])=>`<div class="report-row"><strong>Bay ${esc(bay)}</strong><span>${esc(url)}</span></div>`).join('')}<div class="form-actions">${button('DOWNLOAD PRINTABLE QR SHEET','downloadQR')}</div><p class="hint">Print at 100% scale, cut along the borders and place each code at its matching bay. If the website address changes, replace the printed codes.</p>`);
   } catch(error) { toast(error.message); }
 };
 $('logout').onclick=async()=>{try{await api('logout',{}); closeModal(); activeView='bay'; await refresh(); station('bay');}catch(error){toast(error.message);}};
@@ -302,10 +319,15 @@ async function boot() {
   await refresh();
   if(location.pathname==='/bar') station('bar');
   if(['/reception','/admin'].includes(location.pathname)) { if(location.pathname==='/admin' && state.role!=='admin') login('reception',true); else station('reception'); }
-  eventSource=new EventSource('/api/events');
-  eventSource.onmessage=()=>refresh();
-  eventSource.onopen=()=>{$('connection').textContent='LIVE · NAIROBI';};
-  eventSource.onerror=()=>{$('connection').textContent='RECONNECTING…';};
-  setInterval(refresh,30000);
+  if(state.updates === 'poll') {
+    setInterval(()=>{if(document.visibilityState==='visible') refresh();},state.poll_interval || 5000);
+    document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible') refresh();});
+  } else {
+    eventSource=new EventSource('/api/events');
+    eventSource.onmessage=()=>refresh();
+    eventSource.onopen=()=>{$('connection').textContent='LIVE · NAIROBI';};
+    eventSource.onerror=()=>{$('connection').textContent='RECONNECTING…';};
+    setInterval(refresh,30000);
+  }
 }
 boot();

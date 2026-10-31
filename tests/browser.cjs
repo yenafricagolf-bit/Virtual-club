@@ -9,15 +9,16 @@ const root = path.resolve(__dirname,'..');
 const runtime = fs.mkdtempSync(path.join(os.tmpdir(),'yengolf-ui-'));
 const env = {...process.env, VC_DATA_DIR:runtime};
 const port = process.env.VC_TEST_PORT || '8081';
-const url = `http://127.0.0.1:${port}`;
+const external = !!process.env.VC_TEST_BASE_URL;
+const url = process.env.VC_TEST_BASE_URL || `http://127.0.0.1:${port}`;
 const screenshots = process.env.VC_SCREENSHOTS || path.join(runtime,'screenshots');
 fs.mkdirSync(screenshots,{recursive:true});
-execFileSync('python3',['server.py','--init-staff'],{cwd:root,env,stdio:'ignore'});
-const credentials = JSON.parse(fs.readFileSync(path.join(runtime,'initial-passwords.json'),'utf8'));
-const server = spawn('python3',['server.py','--port',port],{cwd:root,env,stdio:['ignore','pipe','pipe']});
+if(!external) execFileSync('python3',['server.py','--init-staff'],{cwd:root,env,stdio:'ignore'});
+const credentials = JSON.parse(fs.readFileSync(process.env.VC_TEST_PASSWORD_FILE || path.join(runtime,'initial-passwords.json'),'utf8'));
+const server = external ? null : spawn('python3',['server.py','--port',port],{cwd:root,env,stdio:['ignore','pipe','pipe']});
 let browser;
 const errors=[];
-async function visible(locator) { await locator.waitFor({state:'visible',timeout:10000}); }
+async function visible(locator) { await locator.waitFor({state:'visible',timeout:15000}); }
 async function openStation(page,station,role=station) {
   await page.goto(url+'/'+station);
   await visible(page.locator('#loginForm'));
@@ -135,11 +136,30 @@ async function run() {
   await admin.locator('#closeModal').click();
   await admin.getByRole('button',{name:'VIEW DAILY REPORT',exact:true}).click();
   await visible(admin.getByRole('heading',{name:'Today at the club.',exact:true}));
+  if(external) {
+    await admin.locator('#closeModal').click();
+    // A local HTTP test has no production host. Stub only the confirmed origin;
+    // server-side QR permissions/origin validation are covered by the D1 suite.
+    await admin.route('**/api/qr-info',route=>route.fulfill({json:{origin:'https://browser-qr-validation.example',bays:Object.fromEntries(Array.from({length:6},(_,i)=>[i+1,`https://browser-qr-validation.example/bay/${i+1}`]))}}));
+    await admin.getByRole('button',{name:'BAY QR CODES',exact:true}).click();
+    const download=admin.waitForEvent('download');
+    await admin.getByRole('button',{name:'DOWNLOAD PRINTABLE QR SHEET',exact:true}).click();
+    await (await download).saveAs(path.join(screenshots,'bay-qr-browser.pdf'));
+    assert.equal(fs.readFileSync(path.join(screenshots,'bay-qr-browser.pdf')).subarray(0,5).toString(),'%PDF-');
+    await admin.locator('#closeModal').click();
+    await admin.getByRole('button',{name:'MENU SETTINGS',exact:true}).click();
+    const backup=admin.waitForEvent('download');
+    await admin.getByRole('button',{name:'DOWNLOAD DATA BACKUP',exact:true}).click();
+    await (await backup).saveAs(path.join(screenshots,'backup-test.json'));
+    const exported=JSON.parse(fs.readFileSync(path.join(screenshots,'backup-test.json'),'utf8'));
+    assert.equal(exported.state.bays[0].name,'Next Guest');
+    assert.equal('auth' in exported,false);
+  }
   assert.deepEqual(errors,[],'No browser JavaScript errors');
   console.log('PASS: separate customer/Bar/Reception/Admin sessions, grouped options, quantities, escaped notes, live fulfilment, split settlement, receipt PDF, closing, fresh-session isolation, manual orders, cancellation, availability, menu administration, reports and mobile layout.');
   console.log('Artifacts: '+screenshots);
 }
 run().catch(error=>{console.error(error);process.exitCode=1;}).finally(async()=>{
   if(browser) await browser.close();
-  server.kill('SIGTERM');
+  server?.kill('SIGTERM');
 });

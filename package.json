@@ -1,0 +1,26 @@
+{
+  "name": "yengolf-virtual-club",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:init": "node scripts/cloudflare.mjs init-local",
+    "dev": "wrangler pages dev static --port 8788",
+    "build": "npm run build:qr && wrangler pages functions build functions --outdir .runtime/cloudflare-build --build-output-directory static",
+    "build:qr": "esbuild client/qr-print.mjs --bundle --format=esm --platform=browser --minify --outfile=static/qr-print.js",
+    "test": "node --test tests/cloudflare.test.mjs",
+    "pretest": "npm run build",
+    "cf:setup": "node scripts/cloudflare.mjs setup",
+    "cf:deploy": "npm run build && node scripts/cloudflare.mjs deploy"
+  },
+  "dependencies": {
+    "pdf-lib": "1.17.1",
+    "qrcode": "1.5.4"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "miniflare": "4.20260730.0",
+    "wrangler": "4.156.0"
+  },
+  "engines": { "node": ">=22" }
+}

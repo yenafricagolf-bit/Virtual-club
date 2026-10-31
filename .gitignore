@@ -4,4 +4,7 @@ __pycache__/
 .env
 node_modules/
 .venv/
+.wrangler/
+.dev.vars*
+wrangler.local.json
 test-results/
