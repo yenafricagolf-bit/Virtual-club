@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#B62A2D">
+  <title>YENGolf Virtual Club</title>
+  <link rel="preload" href="/fonts/CormorantGaramond.ttf" as="font" type="font/ttf" crossorigin>
+  <link href="/styles.css" rel="stylesheet">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<header>
+  <a class="wordmark" href="/">YENGOLF <span>VIRTUAL CLUB</span></a>
+  <nav aria-label="Stations">
+    <button class="navbtn active" data-view="bay">BAY</button>
+    <button class="navbtn" data-view="bar">BAR</button>
+    <button class="navbtn" data-view="reception">RECEPTION</button>
+  </nav>
+  <div class="connection"><span id="connection">Connecting…</span><button id="logout" class="textbtn" hidden>Sign out</button></div>
+</header>
+<main>
+  <section id="bay" class="view active">
+    <div class="hero">
+      <img class="watermark" src="/vc_logo.svg" alt="" aria-hidden="true">
+      <div class="hero-content">
+        <div class="hero-kicker">ORDER FROM YOUR BAY <span class="rule"></span></div>
+        <h1>Drinks, delivered to<br><em id="bayTitle">your bay.</em></h1>
+        <p>Keep your game going. Browse the bar menu, place your order and we’ll bring it straight to your simulator bay.</p>
+        <div class="row"><button class="btn gold" id="viewMenu">VIEW MENU <span>↗</span></button><button class="btn ghost" id="viewTab">VIEW MY TAB</button></div>
+        <div class="hero-foot">A BETTER ROUND. A LITTLE MORE RELAXED.</div>
+      </div>
+      <div class="hero-stat"><span>YOUR CURRENT TAB</span><strong id="heroTabTotal">KES 0</strong><span>Settle at Reception when you’re done.</span></div>
+    </div>
+    <div class="bay-body">
+      <div id="bayClosed" class="card notice" hidden><span class="eyebrow">WELCOME TO YENGOLF</span><h2 id="closedTitle">Scan your bay’s QR code to begin.</h2><p id="closedCopy">Your bay is assigned automatically. Reception can help you get checked in.</p></div>
+      <div id="menuArea" class="menu-shell" hidden>
+        <div class="menu-head"><div><div class="eyebrow">THE BAR · MADE FOR YOUR ROUND</div><h2>Choose your drink</h2></div><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search drinks…" aria-label="Search drinks"></label></div>
+        <div id="categories" class="categories" role="group" aria-label="Menu categories"></div>
+        <div id="menu" class="grid menu-grid"></div>
+        <div class="card cartbar"><div><div class="eyebrow">YOUR ORDER</div><div id="cartSummary">No items yet</div></div><button class="btn" id="viewCart">VIEW CART <span>→</span></button></div>
+      </div>
+    </div>
+  </section>
+  <section id="bar" class="view">
+    <div class="station-heading"><div><div class="eyebrow">YENGOLF VIRTUAL CLUB / SERVICE</div><h1>Behind the bar.</h1><p>Every order. Every bay. One smooth service.</p></div><button class="btn gold" id="manualBar">+ NEW ORDER</button></div>
+    <div id="barFilters" class="categories"></div><div class="orders" id="barOrders"></div>
+    <details class="menu-availability"><summary>Menu availability</summary><div id="availability" class="grid"></div></details>
+  </section>
+  <section id="reception" class="view">
+    <div class="station-heading"><div><div class="eyebrow">YENGOLF VIRTUAL CLUB / RECEPTION</div><h1>A warm welcome.</h1><p>Your bays, guests and tabs, at a glance.</p></div><div class="card darkcard sales"><span class="eyebrow">TODAY’S RECORDED PAYMENTS</span><strong id="salesTotal">KES 0</strong></div></div>
+    <div class="section-label"><h2>The bays</h2><span id="occupancy"></span></div><div class="grid" id="bayGrid"></div>
+    <div class="row report-actions"><button class="btn ghost" id="reportsButton">VIEW DAILY REPORT</button><button class="btn ghost" id="receiptsButton">PAYMENT HISTORY & RECEIPTS</button><button class="btn ghost" id="qrButton">BAY QR CODES</button><button class="btn gold" id="adminButton">MENU SETTINGS</button></div>
+  </section>
+</main>
+<footer><span>YENGOLF VIRTUAL CLUB</span><span>THE GAME GOES ON.</span></footer>
+<dialog id="modal"><div class="modal-toolbar"><span class="eyebrow">YENGOLF VIRTUAL CLUB</span><button id="closeModal" class="iconbtn" aria-label="Close dialog">×</button></div><div id="modalContent"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

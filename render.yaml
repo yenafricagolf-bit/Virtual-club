@@ -1,0 +1,26 @@
+# Render Blueprint. Persistent disk requires a paid instance; review the price before creating.
+services:
+  - type: web
+    name: yengolf-virtual-club
+    runtime: docker
+    plan: starter
+    region: frankfurt
+    branch: main
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    numInstances: 1
+    envVars:
+      - key: PORT
+        value: "8080"
+      - key: VC_DATA_DIR
+        value: /var/lib/yengolf
+      - key: VC_BAR_PASSWORD
+        generateValue: true
+      - key: VC_RECEPTION_PASSWORD
+        generateValue: true
+      - key: VC_ADMIN_PASSWORD
+        generateValue: true
+    disk:
+      name: yengolf-data
+      mountPath: /var/lib/yengolf
+      sizeGB: 1

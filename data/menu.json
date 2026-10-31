@@ -1,0 +1,911 @@
+[
+  {
+    "id": "jw-gold",
+    "name": "J. Walker Gold Reserve 750ml",
+    "cat": "Whisky",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "jw-gold",
+        "label": "Bottle",
+        "price": 15000
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "jw-double-black",
+    "name": "J. Walker Double Black 1L",
+    "cat": "Whisky",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "jw-double-black-bottle",
+        "label": "Bottle",
+        "price": 11000
+      },
+      {
+        "id": "jw-double-black-tot",
+        "label": "Tot",
+        "price": 500
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "jw-black",
+    "name": "J. Walker Black Label 750ml",
+    "cat": "Whisky",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "jw-black-bottle",
+        "label": "Bottle",
+        "price": 7000
+      },
+      {
+        "id": "jw-black-tot",
+        "label": "Tot",
+        "price": 350
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "glen18",
+    "name": "Glenfiddich 18yrs 750ml",
+    "cat": "Whisky",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "glen18",
+        "label": "Bottle",
+        "price": 26000
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "glen15",
+    "name": "Glenfiddich 15yrs 750ml",
+    "cat": "Whisky",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "glen15",
+        "label": "Bottle",
+        "price": 17000
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "glen12",
+    "name": "Glenfiddich 12yrs 750ml",
+    "cat": "Whisky",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "glen12-bottle",
+        "label": "Bottle",
+        "price": 11000
+      },
+      {
+        "id": "glen12-tot",
+        "label": "Tot",
+        "price": 500
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "glenlivet15",
+    "name": "The Glenlivet 15yrs 750ml",
+    "cat": "Whisky",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "glenlivet15",
+        "label": "Bottle",
+        "price": 15000
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "glenlivet12",
+    "name": "The Glenlivet 12yrs 750ml",
+    "cat": "Whisky",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "glenlivet12",
+        "label": "Bottle",
+        "price": 10000
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "glenlivet-founders-700",
+    "name": "The Glenlivet Founder's 700ml",
+    "cat": "Whisky",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "glenlivet-founders-700-bottle",
+        "label": "Bottle",
+        "price": 9000
+      },
+      {
+        "id": "glenlivet-founders-700-tot",
+        "label": "Tot",
+        "price": 450
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "singleton",
+    "name": "Singleton Dufftown 12yrs 750ml",
+    "cat": "Whisky",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "singleton-bottle",
+        "label": "Bottle",
+        "price": 11000
+      },
+      {
+        "id": "singleton-tot",
+        "label": "Tot",
+        "price": 500
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "jameson-black",
+    "name": "Jameson Black Barrel 750ml",
+    "cat": "Whisky",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "jameson-black-bottle",
+        "label": "Bottle",
+        "price": 8000
+      },
+      {
+        "id": "jameson-black-tot",
+        "label": "Tot",
+        "price": 350
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "hennessy-vsop",
+    "name": "Hennessy VSOP 700ml",
+    "cat": "Cognac",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "hennessy-vsop",
+        "label": "Bottle",
+        "price": 17000
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "hennessy-vs-1l",
+    "name": "Hennessy VS 1L",
+    "cat": "Cognac",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "hennessy-vs-1l",
+        "label": "Bottle",
+        "price": 13000
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "hennessy-vs-700",
+    "name": "Hennessy VS 700ml",
+    "cat": "Cognac",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "hennessy-vs-700-bottle",
+        "label": "Bottle",
+        "price": 11000
+      },
+      {
+        "id": "hennessy-vs-tot",
+        "label": "Tot",
+        "price": 500
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "don-julio",
+    "name": "Don Julio Reposado 750ml",
+    "cat": "Tequila",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "don-julio-bottle",
+        "label": "Bottle",
+        "price": 16000
+      },
+      {
+        "id": "don-julio-tot",
+        "label": "Tot",
+        "price": 700
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "cuervo-gold",
+    "name": "Jose Cuervo Gold 750ml",
+    "cat": "Tequila",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "cuervo-gold-bottle",
+        "label": "Bottle",
+        "price": 5000
+      },
+      {
+        "id": "cuervo-gold-tot",
+        "label": "Tot",
+        "price": 350
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "cuervo-silver",
+    "name": "Jose Cuervo Silver 750ml",
+    "cat": "Tequila",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "cuervo-silver-bottle",
+        "label": "Bottle",
+        "price": 5000
+      },
+      {
+        "id": "cuervo-silver-tot",
+        "label": "Tot",
+        "price": 350
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "absolut",
+    "name": "Absolut Vodka 750ml",
+    "cat": "Vodka",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "absolut-bottle",
+        "label": "Bottle",
+        "price": 4000
+      },
+      {
+        "id": "absolut-tot",
+        "label": "Tot",
+        "price": 300
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "hendricks",
+    "name": "Hendricks 750ml",
+    "cat": "Gin",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "hendricks-bottle",
+        "label": "Bottle",
+        "price": 11000
+      },
+      {
+        "id": "hendricks-tot",
+        "label": "Tot",
+        "price": 5000
+      }
+    ],
+    "flag": "Tot price KES 5,000 supplied by the club; confirmation required."
+  },
+  {
+    "id": "tanqueray",
+    "name": "Tanqueray Original LDG",
+    "cat": "Gin",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "tanqueray-bottle",
+        "label": "Bottle",
+        "price": 5000
+      },
+      {
+        "id": "tanqueray-tot",
+        "label": "Tot",
+        "price": 300
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "gordons",
+    "name": "Gordon's Clear 750ml",
+    "cat": "Gin",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "gordons-bottle",
+        "label": "Bottle",
+        "price": 5000
+      },
+      {
+        "id": "gordons-tot",
+        "label": "Tot",
+        "price": 300
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "jager",
+    "name": "Jagermeister 700ml",
+    "cat": "Liqueurs",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "jager-bottle",
+        "label": "Bottle",
+        "price": 5000
+      },
+      {
+        "id": "jager-tot",
+        "label": "Tot",
+        "price": 300
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "baileys",
+    "name": "Baileys 750ml",
+    "cat": "Liqueurs",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "baileys-bottle",
+        "label": "Bottle",
+        "price": 5000
+      },
+      {
+        "id": "baileys-tot",
+        "label": "Tot",
+        "price": 300
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "captain",
+    "name": "Captain Morgan Spiced Gold 750ml",
+    "cat": "Rum",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "captain-bottle",
+        "label": "Bottle",
+        "price": 5000
+      },
+      {
+        "id": "captain-tot",
+        "label": "Tot",
+        "price": 300
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "bacardi",
+    "name": "Bacardi Blanc 750ml",
+    "cat": "Rum",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "bacardi-bottle",
+        "label": "Bottle",
+        "price": 4000
+      },
+      {
+        "id": "bacardi-tot",
+        "label": "Tot",
+        "price": 300
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "moet",
+    "name": "Moet & Chandon Brut 750ml",
+    "cat": "Champagne",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "moet",
+        "label": "Bottle",
+        "price": 18000
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "belaire",
+    "name": "Belaire Rose 750ml",
+    "cat": "Champagne",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "belaire",
+        "label": "Bottle",
+        "price": 11000
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "muchomas",
+    "name": "Muchomas Black Edition 750ml",
+    "cat": "Wines",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "muchomas-bottle",
+        "label": "Bottle",
+        "price": 4000
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "muchomas",
+    "name": "Muchomas Black Edition",
+    "cat": "Wines",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "muchomas-glass",
+        "label": "Glass",
+        "price": 700
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "nederburg",
+    "name": "Nederburg Merlot 750ml",
+    "cat": "Wines",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "nederburg",
+        "label": "Bottle",
+        "price": 3000
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "pierre-red",
+    "name": "Pierre Marcel Red Sweet 750ml",
+    "cat": "Wines",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "pierre-red-bottle",
+        "label": "Bottle",
+        "price": 3000
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "pierre-red",
+    "name": "Pierre Marcel Red Sweet",
+    "cat": "Wines",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "pierre-red-glass",
+        "label": "Glass",
+        "price": 700
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "pierre-white",
+    "name": "Pierre Marcel White 750ml",
+    "cat": "Wines",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "pierre-white-bottle",
+        "label": "Bottle",
+        "price": 3000
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "pierre-white",
+    "name": "Pierre Marcel White",
+    "cat": "Wines",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "pierre-white-glass",
+        "label": "Glass",
+        "price": 700
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "martini",
+    "name": "Martini Rosso 750ml",
+    "cat": "Aperitifs",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "martini-bottle",
+        "label": "Bottle",
+        "price": 4000
+      },
+      {
+        "id": "martini-tot",
+        "label": "Tot",
+        "price": 300
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "campari",
+    "name": "Campari 750ml",
+    "cat": "Aperitifs",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "campari-bottle",
+        "label": "Bottle",
+        "price": 4000
+      },
+      {
+        "id": "campari-tot",
+        "label": "Tot",
+        "price": 300
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "aperol",
+    "name": "Aperol 750ml",
+    "cat": "Aperitifs",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "aperol-bottle",
+        "label": "Bottle",
+        "price": 4000
+      },
+      {
+        "id": "aperol-tot",
+        "label": "Tot",
+        "price": 300
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "heineken",
+    "name": "Heineken",
+    "cat": "Beers",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "heineken",
+        "label": "Each",
+        "price": 500
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "white-cap",
+    "name": "White Cap",
+    "cat": "Beers",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "white-cap",
+        "label": "Each",
+        "price": 450
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "balozi",
+    "name": "Balozi",
+    "cat": "Beers",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "balozi",
+        "label": "Each",
+        "price": 450
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "savannah",
+    "name": "Savannah",
+    "cat": "Beers",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "savannah",
+        "label": "Each",
+        "price": 500
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "jinro",
+    "name": "Jinro",
+    "cat": "Beers",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "jinro",
+        "label": "Each",
+        "price": 750
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "keringet-1l",
+    "name": "Keringet 1L",
+    "cat": "Soft Drinks",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "keringet-1l",
+        "label": "Each",
+        "price": 300
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "keringet-sparkling-1l",
+    "name": "Keringet Sparkling 1L",
+    "cat": "Soft Drinks",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "keringet-sparkling-1l",
+        "label": "Each",
+        "price": 300
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "keringet-500",
+    "name": "Keringet 500ml",
+    "cat": "Soft Drinks",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "keringet-500",
+        "label": "Each",
+        "price": 200
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "keringet-sparkling-500",
+    "name": "Keringet Sparkling 500ml",
+    "cat": "Soft Drinks",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "keringet-sparkling-500",
+        "label": "Each",
+        "price": 200
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "yengolf-water",
+    "name": "YENGolf Water 500ml",
+    "cat": "Soft Drinks",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "yengolf-water",
+        "label": "Each",
+        "price": 200
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "delmonte",
+    "name": "Delmonte",
+    "cat": "Soft Drinks",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "delmonte",
+        "label": "Each",
+        "price": 500
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "coke-500",
+    "name": "Coke 500ml",
+    "cat": "Soft Drinks",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "coke-500",
+        "label": "Each",
+        "price": 200
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "tonic",
+    "name": "Tonic",
+    "cat": "Soft Drinks",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "tonic",
+        "label": "Each",
+        "price": 250
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "redbull",
+    "name": "Red Bull",
+    "cat": "Energy Drink",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "redbull",
+        "label": "Each",
+        "price": 400
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "sim-regular",
+    "name": "Regular Booth",
+    "cat": "Simulator",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "sim-regular",
+        "label": "Each",
+        "price": 2000
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "sim-premium",
+    "name": "Premium Booth",
+    "cat": "Simulator",
+    "available": true,
+    "active": true,
+    "options": [
+      {
+        "id": "sim-premium",
+        "label": "Each",
+        "price": 2500
+      }
+    ],
+    "flag": ""
+  },
+  {
+    "id": "glenlivet-founders-1l",
+    "name": "The Glenlivet Founder's 1L",
+    "cat": "Whisky",
+    "available": false,
+    "active": true,
+    "options": [],
+    "flag": "Price not provided; unavailable until confirmed."
+  }
+]
